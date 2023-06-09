@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [subject, setSubject] = useState();
+  const [message, setMessage] = useState();
+
+  function handleSubmit() {}
+
   return (
     <section classNameName="mb-4">
       <h2 className="h1-responsive font-weight-bold text-center my-4">
@@ -16,7 +23,13 @@ const Contact = () => {
 
       <div className="row p-4 md-5">
         <div className="col-md-9 mb-md-0 mb-5">
-          <form id="contact-form" name="contact-form" action="#" method="POST" className="mb-2">
+          <form
+            id="contact-form"
+            name="contact-form"
+            action="#"
+            method="POST"
+            className="mb-2"
+          >
             <div className="row ">
               <div className="col-md-6 p-2">
                 <div className="md-form mb-0">
@@ -24,6 +37,8 @@ const Contact = () => {
                     type="text"
                     placeholder="Enter Name"
                     name="name"
+                    value={name}
+                    onChange={handleSubmit}
                     className="form-control"
                   />
                 </div>
@@ -37,6 +52,8 @@ const Contact = () => {
                     name="email"
                     placeholder="Enter Your Email"
                     className="form-control"
+                    value={email}
+                    onChange={handleSubmit}
                   />
                 </div>
               </div>
@@ -50,6 +67,8 @@ const Contact = () => {
                     name="subject"
                     placeholder="subject"
                     className="form-control"
+                    value={subject}
+                    onChange={handleSubmit}
                   />
                 </div>
               </div>
@@ -64,6 +83,8 @@ const Contact = () => {
                     name="message"
                     rows="2"
                     className="form-control md-textarea"
+                    value={message}
+                    onChange={handleSubmit}
                   ></textarea>
                 </div>
               </div>
@@ -71,11 +92,7 @@ const Contact = () => {
           </form>
 
           <div className="text-center text-md-left">
-            <Link
-              className="btn btn-primary"
-            >
-              Send
-            </Link>
+            <Link className="btn btn-primary">Send</Link>
           </div>
           <div className="status"></div>
         </div>
