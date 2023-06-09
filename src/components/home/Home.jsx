@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import CardView from "./CardView";
 
 const Home = () => {
   const [index, setIndex] = useState(0);
@@ -9,6 +10,7 @@ const Home = () => {
     setIndex(selectedIndex);
   };
   return (
+    <div>
     <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
         <img
@@ -48,6 +50,10 @@ const Home = () => {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
+    <div className="p-4">
+        <CardView/>
+    </div>
+    </div>
   );
 };
 

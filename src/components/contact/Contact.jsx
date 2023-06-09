@@ -14,71 +14,57 @@ const Contact = () => {
         help you.
       </p>
 
-      <div className="row">
+      <div className="row p-4 md-5">
         <div className="col-md-9 mb-md-0 mb-5">
-          <form
-            id="contact-form"
-            name="contact-form"
-            action="mail.php"
-            method="POST"
-          >
-            <div className="row">
-              <div className="col-md-6">
+          <form id="contact-form" name="contact-form" action="#" method="POST" className="mb-2">
+            <div className="row ">
+              <div className="col-md-6 p-2">
                 <div className="md-form mb-0">
                   <input
                     type="text"
-                    id="name"
+                    placeholder="Enter Name"
                     name="name"
                     className="form-control"
                   />
-                  <label for="name" className="">
-                    Your name
-                  </label>
                 </div>
               </div>
 
-              <div className="col-md-6">
+              <div className="col-md-6 p-2">
                 <div className="md-form mb-0">
                   <input
                     type="text"
                     id="email"
                     name="email"
+                    placeholder="Enter Your Email"
                     className="form-control"
                   />
-                  <label for="email" className="">
-                    Your email
-                  </label>
                 </div>
               </div>
             </div>
 
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-12 p-2">
                 <div className="md-form mb-0">
                   <input
                     type="text"
-                    id="subject"
                     name="subject"
+                    placeholder="subject"
                     className="form-control"
                   />
-                  <label for="subject" className="">
-                    Subject
-                  </label>
                 </div>
               </div>
             </div>
 
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-12 p-2">
                 <div className="md-form">
                   <textarea
                     type="text"
-                    id="message"
+                    placeholder="Your Message"
                     name="message"
                     rows="2"
                     className="form-control md-textarea"
                   ></textarea>
-                  <label for="message">Your message</label>
                 </div>
               </div>
             </div>
@@ -87,7 +73,6 @@ const Contact = () => {
           <div className="text-center text-md-left">
             <Link
               className="btn btn-primary"
-              onclick="document.getElementById('contact-form').submit();"
             >
               Send
             </Link>
