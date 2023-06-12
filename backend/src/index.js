@@ -6,6 +6,8 @@ const port = process.env.PORT || 4000;
 
 //connect the database
 connectDatabase()
+
+//listen the port
 app.listen(port, (req, res) => {
   console.log(`Express is Running on ${port}`);
 });
