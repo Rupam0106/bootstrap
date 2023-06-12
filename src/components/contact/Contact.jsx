@@ -1,13 +1,37 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [subject, setSubject] = useState();
-  const [message, setMessage] = useState();
+ 
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  function handleSubmit() {}
+  const handleInput = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/api/v1/add", data)
+      .then((res) => {
+        toast.success("Data Add Successfully !", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        console.log(res);
+      })
+      .catch((err) => {
+        toast.error("Error Occure !", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        console.log(err.message);
+      });
+  };
 
   return (
     <section classNameName="mb-4">
@@ -29,6 +53,7 @@ const Contact = () => {
             action="#"
             method="POST"
             className="mb-2"
+            onSubmit={handleSubmit}
           >
             <div className="row ">
               <div className="col-md-6 p-2">
@@ -37,9 +62,10 @@ const Contact = () => {
                     type="text"
                     placeholder="Enter Name"
                     name="name"
-                    value={name}
-                    onChange={handleSubmit}
+                    value={data.name}
+                    onChange={handleInput}
                     className="form-control"
+                    required
                   />
                 </div>
               </div>
@@ -52,8 +78,9 @@ const Contact = () => {
                     name="email"
                     placeholder="Enter Your Email"
                     className="form-control"
-                    value={email}
-                    onChange={handleSubmit}
+                    value={data.email}
+                    onChange={handleInput}
+                    required
                   />
                 </div>
               </div>
@@ -67,8 +94,9 @@ const Contact = () => {
                     name="subject"
                     placeholder="subject"
                     className="form-control"
-                    value={subject}
-                    onChange={handleSubmit}
+                    value={data.subject}
+                    onChange={handleInput}
+                    required
                   />
                 </div>
               </div>
@@ -83,8 +111,9 @@ const Contact = () => {
                     name="message"
                     rows="2"
                     className="form-control md-textarea"
-                    value={message}
-                    onChange={handleSubmit}
+                    value={data.message}
+                    onChange={handleInput}
+                    required
                   ></textarea>
                 </div>
               </div>
@@ -92,7 +121,9 @@ const Contact = () => {
           </form>
 
           <div className="text-center text-md-left">
-            <Link className="btn btn-primary">Send</Link>
+            <Link className="btn btn-primary" onClick={handleSubmit}>
+              Send
+            </Link>
           </div>
           <div className="status"></div>
         </div>
