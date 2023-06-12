@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+// import { toast } from "react-toastify";
 
 const CardView = () => {
   const [view, setView] = useState([]);
+
+  // const handleDelete=(e)=>{
+  //   toast.success("User Deleted Successfully !", {
+  //     position: toast.POSITION.TOP_CENTER,
+  //   });
+  // }
 
   useEffect(() => {
     axios
@@ -27,6 +34,7 @@ const CardView = () => {
               <li className="list-group-item">Subject :- {data.subject}</li>
               <li className="list-group-item">Message :- {data.message}</li>
             </ul>
+            {/* <button className="btn btn-danger" onClick={handleDelete}>Delete</button> */}
           </div>
         ))}
       </div>

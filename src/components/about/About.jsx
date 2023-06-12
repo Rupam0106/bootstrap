@@ -17,7 +17,7 @@ const About = () => {
           </Col>
         </Row>
       </Container>
-      <div pt-4>
+      <div >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus sint
         consequatur, eveniet nam numquam tenetur quaerat ducimus. Praesentium
         tempora laborum fugiat id ex. Eos error, rerum quidem aut eveniet

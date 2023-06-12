@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 
 function Footer() {
   return (
-    <Card className="text-center">
+    <Card className="text-center bg-dark text-white w-full">
       <Card.Body>
         <Card.Title>Ru Solutions</Card.Title>
         <Card.Text>

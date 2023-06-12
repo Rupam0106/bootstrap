@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
- 
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -26,15 +25,15 @@ const Contact = () => {
         console.log(res);
       })
       .catch((err) => {
-        toast.error("Error Occure !", {
+        toast.error("Please Provide valid Input", {
           position: toast.POSITION.TOP_CENTER,
         });
-        console.log(err.message);
+        console.log(err);
       });
   };
 
   return (
-    <section classNameName="mb-4">
+    <section className="mb-4">
       <h2 className="h1-responsive font-weight-bold text-center my-4">
         Contact us
       </h2>
