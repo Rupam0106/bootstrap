@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please Provide a name"],
-    minLength: [3,"Please provide minimum 3 Character"],
+    minLength: [3, "Please provide minimum 3 Character"],
     validate: {
       validator: function (name) {
         return /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g.test(name);
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "Please Provide a Email"],
-    minLength: [5,"Please provide minimum 5 Character"],
+    minLength: [5, "Please provide minimum 5 Character"],
     unique: true,
     validate: {
       validator: function (email) {
@@ -23,13 +23,13 @@ const userSchema = new mongoose.Schema({
           email
         );
       },
-      message: "Please Provide a Valid Email",
+      message: "Please Provide a Valid Email ",
     },
   },
   subject: {
     type: String,
     required: [true, "Please Provide a Valid Subject"],
-    minLength: [5,"Please provide minimum 5 Character"],
+    minLength: [5, "Please provide minimum 5 Character"],
     validate: {
       validator: function (subject) {
         return /^[a-zA-Z.]*$/.test(subject);
@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
   message: {
     type: String,
     required: [true, "Please Provide a details Message"],
-    minLength: [5,"Please provide minimum 5 Character"],
+    minLength: [5, "Please provide minimum 5 Character"],
   },
 });
 
