@@ -1,8 +1,8 @@
 const userModel = require("../models/userModel");
 
 exports.createUser = async (req, res) => {
-  const { name, email, subject, message } = req.body;
-  if (!name && !email && !subject && !message) {
+  const { name, email,password, subject, message } = req.body;
+  if (!name && !email && !subject && !message  && !password ) {
     return res.status(400).json({
       message: "Please Provide all valid data",
     });
@@ -15,4 +15,16 @@ exports.createUser = async (req, res) => {
 exports.getAllUser = async (req, res) => {
   const user = await userModel.find();
   res.status(200).json({ success: true, user });
+};
+
+
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email && !password) {
+    return res.status(400).json({
+      message: "Please Provide valid Email and Password",
+    });
+  }
+
+  res.status(201).json({ success: true });
 };

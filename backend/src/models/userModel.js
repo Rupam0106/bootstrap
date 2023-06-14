@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
       message: "Please Provide a Valid Email ",
     },
   },
+  password: {
+    type: String,
+    required: [true, "Please Provide a Email"],
+    minLength: [5, "Please provide minimum 5 Character"],
+  },
   subject: {
     type: String,
     required: [true, "Please Provide a Valid Subject"],
