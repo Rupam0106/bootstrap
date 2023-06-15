@@ -39,9 +39,7 @@ const Contact = () => {
       </h2>
 
       <p className="text-center w-responsive mx-auto mb-5">
-        Do you have any questions? Please do not hesitate to contact us
-        directly. Our team will come back to you within a matter of hours to
-        help you.
+       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi, ab iusto facilis veniam autem odio dolore doloremque reprehenderit unde qui. Laudantium hic,
       </p>
 
       <div className="row p-4 md-5">
