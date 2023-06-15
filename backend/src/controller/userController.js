@@ -1,8 +1,8 @@
 const userModel = require("../models/userModel");
 
 exports.createUser = async (req, res) => {
-  const { name, email,password, subject, message } = req.body;
-  if (!name && !email && !subject && !message  && !password ) {
+  const { name, email, password, subject, message } = req.body;
+  if (!name && !email && !subject && !message && !password) {
     return res.status(400).json({
       message: "Please Provide all valid data",
     });
@@ -17,14 +17,34 @@ exports.getAllUser = async (req, res) => {
   res.status(200).json({ success: true, user });
 };
 
-
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
-  if (!email && !password) {
+  if (!email) {
     return res.status(400).json({
-      message: "Please Provide valid Email and Password",
+      message: "Please Provide valid Email ",
+    });
+  }
+  if (!password) {
+    return res.status(400).json({
+      message: "Please Provide valid Password",
     });
   }
 
-  res.status(201).json({ success: true });
+  const user = await userModel.findOne({ email });
+  if (!user) {
+    return res.status(400).json({
+      sucess: false,
+      message: "User Not found",
+    });
+  }
+
+  const isPasswordMatched = await user.comparePassword(password);
+  if (!isPasswordMatched) {
+    return res.status(401).json({
+      sucess: false,
+      message: "Permission Denied",
+    });
+  }
+
+  res.status(200).json({ success: true, message: "User Login sucessfully" });
 };

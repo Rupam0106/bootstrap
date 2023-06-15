@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -35,12 +37,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please Provide a Valid Subject"],
     minLength: [5, "Please provide minimum 5 Character"],
-    validate: {
-      validator: function (subject) {
-        return /^[a-zA-Z.]*$/.test(subject);
-      },
-      message: "Please Provide a Valid subject",
-    },
   },
   message: {
     type: String,
@@ -48,5 +44,19 @@ const userSchema = new mongoose.Schema({
     minLength: [5, "Please provide minimum 5 Character"],
   },
 });
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+
+  this.password = await bcrypt.hash(this.password, 10);
+});
+
+// Compare Password
+
+userSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
 module.exports = mongoose.model("User", userSchema);
+
