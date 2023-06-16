@@ -7,12 +7,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please Provide a name"],
     minLength: [3, "Please provide minimum 3 Character"],
-    validate: {
-      validator: function (name) {
-        return /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g.test(name);
-      },
-      message: "Please Provide a Valid Name ",
-    },
   },
   email: {
     type: String,
@@ -43,7 +37,12 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please Provide a details Message"],
     minLength: [5, "Please provide minimum 5 Character"],
   },
+  role: {
+    type: String,
+    default: "user",
+  },
 });
+
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -53,10 +52,15 @@ userSchema.pre("save", async function (next) {
 });
 
 // Compare Password
-
 userSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-module.exports = mongoose.model("User", userSchema);
+// JWT TOKEN
+userSchema.methods.getJWTToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE,
+  });
+};
 
+module.exports = mongoose.model("User", userSchema);
