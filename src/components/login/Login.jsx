@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -20,10 +20,10 @@ const Login = () => {
     axios
       .post("http://localhost:5000/api/v1/login", data)
       .then((res) => {
-        toast.success(res.data.message, {
+        toast.success(`${res.data.user.name} login Successfully`, {
           position: toast.POSITION.TOP_CENTER,
         });
-        navigate("/")
+        navigate("/");
         console.log(res);
       })
       .catch((err) => {
@@ -55,6 +55,7 @@ const Login = () => {
                     value={data.email}
                     onChange={handleInput}
                     className="form-control form-control-lg"
+                    required
                   />
                   <label className="form-label" htmlFor="typeEmailX-2">
                     Email
@@ -70,6 +71,7 @@ const Login = () => {
                     value={data.password}
                     onChange={handleInput}
                     className="form-control form-control-lg"
+                    required
                   />
                   <label className="form-label" htmlFor="typePasswordX-2">
                     Password

@@ -8,6 +8,8 @@ import Home from "./components/home/Home";
 import { ToastContainer } from "react-toastify";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import Logout from "./components/logout/Logout";
+import CardView from "./components/user/CardView";
 
 function App() {
   return (
@@ -16,10 +18,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/users" element={<CardView />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
       <Footer />
     </BrowserRouter>

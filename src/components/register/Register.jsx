@@ -30,7 +30,7 @@ const Register = () => {
         console.log(res);
       })
       .catch((err) => {
-        toast.error("Please Provide valid Input", {
+        toast.error(err.response.data.message, {
           position: toast.POSITION.TOP_CENTER,
         });
         console.log(err);
@@ -57,6 +57,7 @@ const Register = () => {
                     value={data.name}
                     onChange={handleInput}
                     className="form-control form-control-lg"
+                    
                   />
                   <label className="form-label" htmlFor="typeNameX-2">
                     Name
@@ -71,6 +72,7 @@ const Register = () => {
                     value={data.email}
                     onChange={handleInput}
                     className="form-control form-control-lg"
+                    
                   />
                   <label className="form-label" htmlFor="typeEmailX-2">
                     Email
@@ -86,6 +88,7 @@ const Register = () => {
                     value={data.password}
                     onChange={handleInput}
                     className="form-control form-control-lg"
+                    
                   />
                   <label className="form-label" htmlFor="typePasswordX-2">
                     Password
@@ -101,6 +104,7 @@ const Register = () => {
                     value={data.subject}
                     onChange={handleInput}
                     className="form-control form-control-lg"
+                    
                   />
                   <label className="form-label" htmlFor="typeSubjectX-2">
                     Subject
@@ -116,6 +120,7 @@ const Register = () => {
                     value={data.message}
                     onChange={handleInput}
                     className="form-control form-control-lg"
+                   
                   />
                   <label className="form-label" htmlFor="typeMessageX-2">
                     Message
