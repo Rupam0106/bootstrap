@@ -2,23 +2,24 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spiner from "../spinner/Spiner";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const CardView = () => {
   let count = 1;
   const [view, setView] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleDelete = (id) => {
-    console.log(id)
+  const handleDelete = (e, id) => {
+    console.log(id);
     axios
       .delete(`http://localhost:5000/api/v1/user/${id}`)
       .then((data) => {
-        console.log(data.data.message)
+        console.log(data.data.message);
         toast.success(data.data.message, {
           position: toast.POSITION.TOP_CENTER,
         });
-        console.log(data.data.user);
-        setView(data.data.user);
+        const del = data.data.user.filter((item) => id !== item.id);
+        setView(del);
       })
       .catch((err) => {
         toast.error(err, {
@@ -59,16 +60,18 @@ const CardView = () => {
           <tbody>
             {view.map((data) => (
               <tr>
-                <th scope="row" key={data._id}>{count++}</th>
+                <th scope="row">{count++}</th>
                 <td>{data.name}</td>
                 <td>{data.email}</td>
                 <td>{data.subject}</td>
                 <td>{data.message}</td>
                 <td>
-                  <button className="btn btn-primary ">Edit</button>
+                  <Link to="/update">
+                    <button className="btn btn-primary ">Edit</button>
+                  </Link>
                   <button
                     className="btn btn-danger mx-2"
-                    onClick={() => handleDelete(data._id)}
+                    onClick={(e) => handleDelete(e, data._id)}
                   >
                     Delete
                   </button>
